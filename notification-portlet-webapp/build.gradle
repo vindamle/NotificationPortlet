@@ -5,8 +5,6 @@ plugins {
     id "com.moowork.node" version "1.2.0"
 }
 
-//apply plugin: 'eclipse-wtp'
-
 configurations {
     providedRuntime
 }
@@ -55,11 +53,11 @@ dependencies {
     /*
      * Spring Boot
      */
-    compile("org.springframework.boot:spring-boot-starter-cache")
-    compile("org.springframework.boot:spring-boot-starter-security")
-    compile("org.springframework.boot:spring-boot-starter-web")
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    compile 'org.springframework.boot:spring-boot-starter-cache'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 
     /*
      * Portlet API
@@ -92,6 +90,7 @@ node {
  */
 task classesJar(type: Jar) {
     from sourceSets.main.output
+    // Do not use a classifier to match file expected by signing for bootJar
     //archiveClassifier = 'classes'
 }
 
