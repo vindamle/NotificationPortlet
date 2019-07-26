@@ -1,23 +1,11 @@
-buildscript {
-    ext {
-        springBootVersion = '2.1.6.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
-
 plugins {
+    id 'war'
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id "com.moowork.node" version "1.2.0"
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse-wtp'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'war'
+//apply plugin: 'eclipse-wtp'
 
 configurations {
     providedRuntime
@@ -67,11 +55,11 @@ dependencies {
     /*
      * Spring Boot
      */
-    compile('org.springframework.boot:spring-boot-starter-cache')
-    compile('org.springframework.boot:spring-boot-starter-security')
-    compile('org.springframework.boot:spring-boot-starter-web')
-    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile("org.springframework.boot:spring-boot-starter-cache")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 
     /*
      * Portlet API
@@ -104,11 +92,14 @@ node {
  */
 task classesJar(type: Jar) {
     from sourceSets.main.output
-    classifier 'jar'
+    //archiveClassifier = 'classes'
 }
-artifacts {
-  archives classesJar
-}
+
+/*
+ * bootJar and bootWar archives are automatically added but not a dependency
+ * using classesJar task to build actual jar with only classes
+ */
+signArchives.dependsOn(classesJar, bootWar)
 
 war {
     from("${buildDir}/css") {

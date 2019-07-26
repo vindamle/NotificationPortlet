@@ -199,9 +199,6 @@
         <property name="active" value="false"/> <!-- The emergency alerts demo can be activated by the EmergencyAlertAdminController. -->
     </bean>
 
-    <!-- Notification JPA -> DTO mapping -->
-    <bean id="addresseePostProcessor" class="org.jasig.portlet.notice.service.jpa.AddresseePostProcessor"/>
-
     <!-- SSP notifications -->
     <bean id="sspNotifications" class="org.jasig.portlet.notice.service.ssp.SSPTaskNotificationService">
         <property name="name" value="sspTaskNotificationService"/>

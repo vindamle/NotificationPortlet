@@ -22,7 +22,7 @@ import org.apereo.portal.soffit.security.SoffitApiAuthenticationManager;
 import org.apereo.portal.soffit.security.SoffitApiPreAuthenticatedProcessingFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.web.support.ErrorPageFilter;
+import org.springframework.boot.web.servlet.support.ErrorPageFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
